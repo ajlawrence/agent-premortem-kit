@@ -1,0 +1,335 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent Premortem Kit</title>
+  <meta name="description" content="A $19 local browser kit for AI operators who need proof before trusting agent workflows.">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f7f8fb;
+      --ink: #151922;
+      --muted: #586273;
+      --panel: #ffffff;
+      --line: #d8dee8;
+      --blue: #235bd8;
+      --green: #18734c;
+      --yellow: #fff7df;
+      --yellow-line: #ecd489;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.5;
+      letter-spacing: 0;
+    }
+    a { color: inherit; }
+    .wrap {
+      width: min(1120px, calc(100% - 36px));
+      margin: 0 auto;
+    }
+    header {
+      padding: 18px 0;
+      border-bottom: 1px solid var(--line);
+      background: rgba(247, 248, 251, 0.92);
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(10px);
+      z-index: 3;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      font-weight: 800;
+      font-size: 18px;
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      border-radius: 7px;
+      padding: 9px 14px;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      text-decoration: none;
+      font-weight: 760;
+      white-space: nowrap;
+    }
+    .button.primary {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: white;
+    }
+    .hero {
+      padding: 74px 0 40px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(360px, 520px);
+      gap: 40px;
+      align-items: center;
+    }
+    h1 {
+      margin: 0 0 18px;
+      font-size: clamp(40px, 6vw, 74px);
+      line-height: 0.95;
+      max-width: 780px;
+      letter-spacing: 0;
+    }
+    .lede {
+      max-width: 680px;
+      color: var(--muted);
+      font-size: 20px;
+    }
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+    .price {
+      color: var(--green);
+      font-weight: 820;
+    }
+    .notice {
+      margin-top: 16px;
+      border: 1px solid var(--yellow-line);
+      border-radius: 8px;
+      background: var(--yellow);
+      padding: 12px 14px;
+      color: #6d4b00;
+      font-size: 14px;
+      max-width: 720px;
+    }
+    .preview {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: hidden;
+      background: #101319;
+      box-shadow: 0 16px 40px rgba(19, 28, 42, 0.16);
+    }
+    .preview-head {
+      display: flex;
+      gap: 7px;
+      padding: 12px;
+      background: #e9edf4;
+    }
+    .dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 999px;
+      background: #9aa6b9;
+    }
+    .preview-body {
+      padding: 18px;
+      color: #f6f8fb;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      min-height: 340px;
+      overflow-wrap: anywhere;
+    }
+    .preview-body strong {
+      color: #9ec3ff;
+    }
+    section {
+      padding: 34px 0;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 18px;
+    }
+    h2 {
+      margin: 0 0 16px;
+      font-size: 30px;
+      line-height: 1.1;
+    }
+    h3 {
+      margin: 0 0 8px;
+      font-size: 18px;
+    }
+    p { margin: 0 0 12px; color: var(--muted); }
+    ul { margin: 0; padding-left: 20px; color: var(--muted); }
+    li + li { margin-top: 7px; }
+    .band {
+      background: #edf2fb;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+    .proof {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    footer {
+      padding: 28px 0;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 14px;
+    }
+    @media (max-width: 880px) {
+      .hero,
+      .grid,
+      .proof {
+        grid-template-columns: 1fr;
+      }
+      .hero {
+        padding-top: 44px;
+      }
+      .preview-body {
+        min-height: 260px;
+      }
+    }
+    @media (max-width: 560px) {
+      nav,
+      .nav-actions,
+      .hero-actions {
+        display: grid;
+        width: 100%;
+      }
+      .button {
+        width: 100%;
+      }
+      h1 {
+        font-size: 42px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <nav>
+        <div class="brand">Agent Premortem Kit</div>
+        <div class="nav-actions">
+          <a class="button" href="#what-you-get">What you get</a>
+          <a class="button primary" href="mailto:aj.lawrence@thejargroup.com?subject=Agent%20Premortem%20Kit%20purchase&body=I%20want%20to%20buy%20the%20Agent%20Premortem%20Kit%20for%20%2419.%20Please%20send%20payment%20instructions.">Buy for $19</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap hero">
+      <div>
+        <h1>Stop accepting fake "done" from AI agents.</h1>
+        <p class="lede">A local browser kit for operators who need every AI workflow to name the artifact, verification proof, delivery state, and external side-effect boundary before anyone trusts it.</p>
+        <div class="hero-actions">
+          <a class="button primary" href="mailto:aj.lawrence@thejargroup.com?subject=Agent%20Premortem%20Kit%20purchase&body=I%20want%20to%20buy%20the%20Agent%20Premortem%20Kit%20for%20%2419.%20Please%20send%20payment%20instructions.">Buy for <span class="price" style="color:#fff;margin-left:4px;">$19</span></a>
+          <a class="button" href="#proof">See proof</a>
+        </div>
+        <div class="notice">Manual checkout is active while the automated Gumroad/Stripe product listing waits on account authentication. The paid file is not exposed on this public page.</div>
+      </div>
+      <div class="preview" aria-label="Generated launch note preview">
+        <div class="preview-head"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+        <div class="preview-body">
+          <strong># Closeout Contract</strong><br><br>
+          Required evidence:<br>
+          - Artifact path or URL<br>
+          - Verification command or observed result<br>
+          - PASS / FAIL / PARTIAL result<br>
+          - Delivery state<br><br>
+          Stop conditions:<br>
+          - No artifact exists<br>
+          - Wrong surface verified<br>
+          - External action attempted without approval<br><br>
+          Revenue target:<br>
+          $19 x 8 sales/month = $152 gross
+        </div>
+      </div>
+    </div>
+
+    <section id="what-you-get">
+      <div class="wrap">
+        <h2>What you get</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>Premortem generator</h3>
+            <p>Enter the workflow and generate filled risk-register JSON with failure modes, early warnings, thresholds, mitigations, owners, and review dates.</p>
+          </div>
+          <div class="card">
+            <h3>Closeout contract</h3>
+            <p>Force "done" to include artifact proof, verification proof, PASS/FAIL/PARTIAL status, delivery state, and follow-up.</p>
+          </div>
+          <div class="card">
+            <h3>Launch note</h3>
+            <p>Set the side-effect boundary and one metric loop so the workflow does not become a polished artifact with no operational signal.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="band">
+      <div class="wrap">
+        <h2>Built for operators, not prompt collectors</h2>
+        <div class="grid">
+          <div class="card">
+            <h3>AI coding agents</h3>
+            <ul>
+              <li>Catch missing files before closeout.</li>
+              <li>Separate config checks from user-visible proof.</li>
+              <li>Stop "should be fixed" language.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>Automations and crons</h3>
+            <ul>
+              <li>Require real route proof.</li>
+              <li>Record delivery state.</li>
+              <li>Prevent silent success claims.</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>No-code workflows</h3>
+            <ul>
+              <li>Make side effects explicit.</li>
+              <li>Define review dates.</li>
+              <li>Keep public actions gated.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="proof">
+      <div class="wrap">
+        <h2>Local proof before launch</h2>
+        <div class="proof">
+          <div class="card">
+            <h3>Package validation</h3>
+            <p><code>AGENT_PREMORTEM_KIT_OK files=11 risks=4</code></p>
+          </div>
+          <div class="card">
+            <h3>Browser render check</h3>
+            <p><code>BROWSER_CHECK_OK viewports=2</code></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">Agent Premortem Kit. Manual checkout via email while automated payment provider access is being connected.</div>
+  </footer>
+</body>
+</html>
+
