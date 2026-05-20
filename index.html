@@ -5,6 +5,63 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Agent Closeout Gate</title>
   <meta name="description" content="A $19 local browser kit that stops AI agents from calling work done without artifact proof, route proof, delivery state, and side-effect boundaries.">
+  <meta property="og:title" content="Agent Closeout Gate">
+  <meta property="og:description" content="Stop accepting fake done from AI agents. A local browser closeout gate for artifact, route, delivery, and side-effect proof.">
+  <meta property="og:type" content="product">
+  <meta property="og:url" content="https://ajlawrence.github.io/agent-premortem-kit/">
+  <meta name="twitter:card" content="summary_large_image">
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Agent Closeout Gate",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any modern browser",
+      "description": "A local browser tool that stops AI agents from calling work done without artifact proof, exact-route proof, delivery state, and side-effect boundaries.",
+      "offers": {
+        "@type": "Offer",
+        "price": "19",
+        "priceCurrency": "USD",
+        "url": "https://7419119966713.gumroad.com/l/agent-premortem-kit?wanted=true"
+      },
+      "creator": {
+        "@type": "Person",
+        "name": "A.J. Lawrence"
+      }
+    }
+  </script>
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Agent Closeout Gate another premortem prompt?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Free premortem prompts help you imagine what could go wrong. Agent Closeout Gate makes an AI workflow record artifact proof, exact-route proof, delivery state, side-effect boundaries, and PASS / FAIL / PARTIAL status before closeout."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Who is Agent Closeout Gate for?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is for solo founders, consultants, technical PMs, and operators using AI coding agents, browser agents, cron jobs, Zapier, Make, n8n, or custom automations for real work."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does it need an API key or server?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. The paid download is a local HTML file that runs in a browser."
+          }
+        }
+      ]
+    }
+  </script>
   <style>
     :root {
       color-scheme: light;
@@ -179,6 +236,24 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
+    }
+    .faq {
+      display: grid;
+      gap: 12px;
+      max-width: 850px;
+    }
+    .faq details {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 16px 18px;
+    }
+    .faq summary {
+      cursor: pointer;
+      font-weight: 780;
+    }
+    .faq p {
+      margin-top: 10px;
     }
     footer {
       padding: 28px 0;
@@ -362,10 +437,30 @@
         </div>
       </div>
     </section>
+
+    <section>
+      <div class="wrap">
+        <h2>FAQ</h2>
+        <div class="faq">
+          <details open>
+            <summary>Is this another premortem prompt?</summary>
+            <p>No. Free premortem prompts help you imagine what could go wrong. Agent Closeout Gate makes an AI workflow record artifact proof, exact-route proof, delivery state, side-effect boundaries, and PASS / FAIL / PARTIAL status before closeout.</p>
+          </details>
+          <details>
+            <summary>Who is it for?</summary>
+            <p>Solo founders, consultants, technical PMs, and operators using AI coding agents, browser agents, cron jobs, Zapier, Make, n8n, or custom automations for real work.</p>
+          </details>
+          <details>
+            <summary>Does it need an API key or server?</summary>
+            <p>No. The paid download is a local HTML file that runs in any modern browser.</p>
+          </details>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer>
-    <div class="wrap">Agent Closeout Gate. Checkout and fulfillment run through Gumroad.</div>
+    <div class="wrap">Agent Closeout Gate. Checkout and fulfillment run through Gumroad. <a href="privacy.html">Privacy</a> · <a href="terms.html">Terms</a></div>
   </footer>
 </body>
 </html>
